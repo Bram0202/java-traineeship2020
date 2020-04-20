@@ -46,7 +46,6 @@ public class App {
         }
     }
 
-    //TODO: werkend maken.
     private void betaalZorgtoeslag(String name, Connection connection, Statement statement) throws SQLException {
         try {
             connection.setAutoCommit(false);
