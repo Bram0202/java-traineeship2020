@@ -6,7 +6,8 @@ import java.util.Properties;
 
 public class MyProperties {
 
-    private MyProperties() {}
+    private MyProperties() {
+    }
 
     static Properties prop = new Properties();
 
