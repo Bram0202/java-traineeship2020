@@ -15,7 +15,7 @@ public class App {
             loadDriver();
             Statement statement = createStatement(connection);
             getTableData(statement, "persons");
-//            betaalZorgtoeslag("Bram", connection, statement);
+            betaalZorgtoeslag("Bram", connection, statement);
         } catch (SQLException e) {
             System.err.println("SQLException occured; exiting... Details: \n" + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -47,23 +47,21 @@ public class App {
     }
 
     //TODO: werkend maken.
-//    private void betaalZorgtoeslag(String name, Connection connection, Statement statement) throws SQLException {
-//        try {
-//            connection.setAutoCommit(false);
-//            ResultSet rsPersons = statement.executeQuery("SELECT * FROM persons WHERE name = " + name);
-//            ResultSet rsBd = statement.executeQuery("SELECT * FROM belastingdienst");
-//
-//            int newBalance = (rsPersons.getInt("balance") + 100);
-//            statement.executeUpdate("UPDATE persons SET balance = " + newBalance + "WHERE name ='" + name +"'");
-//            newBalance = (rsBd.getInt("balance") - 100);
-//            statement.executeUpdate("UPDATE belastingdienst SET balance = " + newBalance);
-//
-//            connection.commit();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            connection.rollback();
-//        } finally {
-//            connection.setAutoCommit(true);
-//        }
-//    }
+    private void betaalZorgtoeslag(String name, Connection connection, Statement statement) throws SQLException {
+        try {
+            connection.setAutoCommit(false);
+
+            int zorgtoeslag = 100;
+
+            statement.executeUpdate("UPDATE persons SET balance = balance + " + zorgtoeslag + " WHERE name ='" + name + "'");
+            statement.executeUpdate("UPDATE belastingdienst SET balance = balance - " + zorgtoeslag);
+
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            connection.rollback();
+        } finally {
+            connection.setAutoCommit(true);
+        }
+    }
 }
