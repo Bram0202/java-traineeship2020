@@ -52,8 +52,12 @@ public class App {
 
             int zorgtoeslag = 100;
 
-            statement.executeUpdate("UPDATE persons SET balance = balance + " + zorgtoeslag + " WHERE name ='" + name + "'");
-            statement.executeUpdate("UPDATE belastingdienst SET balance = balance - " + zorgtoeslag);
+            statement.executeUpdate("UPDATE persons " +
+                                        "SET balance = balance + " + zorgtoeslag + " " +
+                                        "WHERE name ='" + name + "'");
+
+            statement.executeUpdate("UPDATE belastingdienst " +
+                                        "SET balance = balance - " + zorgtoeslag);
 
             connection.commit();
         } catch (SQLException e) {
