@@ -10,12 +10,18 @@ public class Person {
 
     private String name;
     private int age;
+    private int balance = 0;
 
     public Person() {}
 
     public Person(String name, int age) {
+        this(name, age, 0);
+    }
+
+    public Person(String name, int age, int balance) {
         this.name = name;
         this.age = age;
+        this.balance = balance;
     }
 
     @Override

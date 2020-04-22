@@ -12,7 +12,7 @@ public class App {
         EntityManager em = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
         PersonDao personDao = new PersonDao(em);
 
-        Person p = new Person("Bert", 38);
+        Person p = new Person("Marieke", 25);
         personDao.insert(p);
         int id = p.getId();
         System.out.println(personDao.getPerson(id).toString());
