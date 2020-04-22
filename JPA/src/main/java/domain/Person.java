@@ -1,8 +1,6 @@
 package domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Person {
@@ -17,6 +15,11 @@ public class Person {
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{ name= " + name + ", age= " + age + "}";
     }
 
     public int getId() { return id; }

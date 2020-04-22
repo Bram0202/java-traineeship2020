@@ -19,7 +19,6 @@
         <module>JAVA</module>
         <module>JDBC</module>
         <module>JPA</module>
-        <module>jpatest</module>
     </modules>
 
     <dependencyManagement>
