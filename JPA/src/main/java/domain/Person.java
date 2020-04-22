@@ -3,6 +3,7 @@ package domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "persons")
 public class Person {
     @Id @GeneratedValue
     private int id;
