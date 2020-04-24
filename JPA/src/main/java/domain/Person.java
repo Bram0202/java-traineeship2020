@@ -16,7 +16,7 @@ public class Person {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Subject subject;
 
-    public Person() {}
+   public Person() {}
 
     public Person(String name, int age) {
         this(name, age, 0);
