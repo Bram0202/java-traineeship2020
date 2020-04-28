@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "persons")
 @NamedQuery(name = "selectAll", query = "select p from Person p")
@@ -13,7 +15,10 @@ public class Person extends AbstractEntity {
     private int age;
     private int balance = 0;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @OneToMany(cascade = ALL)
+    private List<Address> address = new ArrayList<>();
+
+    @ManyToMany(cascade = MERGE)
     private List<Subject> subjects = new ArrayList<>();
 
    public Person() {}

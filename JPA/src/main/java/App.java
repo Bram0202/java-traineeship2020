@@ -41,6 +41,7 @@ public class App {
         log("Select All by name");
         personDao.selectAll("Bram").forEach(this::log);
 
+        // WARNING: Breekt waarschijnlijk de app wanneer er geen exacte kopie van de DB aanwezig is.
         Person angela = personDao.getPerson(7);
         Subject biology = subjectDao.getSubject(40);
         angela.setSubjects(biology);
