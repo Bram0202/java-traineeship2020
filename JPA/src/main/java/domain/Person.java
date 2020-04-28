@@ -15,6 +15,9 @@ public class Person extends AbstractEntity {
     private int age;
     private int balance = 0;
 
+    @OneToOne(cascade = ALL)
+    private Education currentEducation;
+
     @OneToMany(cascade = ALL)
     private List<Address> address = new ArrayList<>();
 
