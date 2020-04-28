@@ -1,4 +1,5 @@
 import dao.PersonDao;
+import dao.SubjectDao;
 import domain.Person;
 import domain.Subject;
 import org.slf4j.Logger;
@@ -15,45 +16,41 @@ public class App {
     public static void main(String[] args) { new App().start(); }
 
     private void start() {
-        log("Starting");
+        log("Starting...");
         EntityManager em = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
         PersonDao personDao = new PersonDao(em);
+        SubjectDao subjectDao = new SubjectDao(em);
 
         Person insertedPerson = new Person("Bram", 32);
         personDao.insert(insertedPerson);
         int id = insertedPerson.getId();
-        System.out.println(personDao.getPerson(id));
+        log(personDao.getPerson(id));
 
-        personDao.delete(id - 1);
+        personDao.delete(id - 2);
         personDao.update(22, 26);
 
-        System.out.println("");
-        System.out.println("Select All");
-        for (Person person : personDao.selectAllPlain()) {
-            System.out.println(person);
-        }
+        log("Select All");
+        personDao.selectAllPlain().forEach(this::log);
 
-        System.out.println("");
-        System.out.println("Select All Named");
-        for (Person person : personDao.selectAll()) {
-            System.out.println(person);
-        }
+        log("Select All Named");
+        personDao.selectAll().forEach(this::log);
 
-        System.out.println("");
-        System.out.println("Select All by age");
-        for (Person person : personDao.selectAll(25)) {
-            System.out.println(person);
-        }
+        log("Select All by age");
+        personDao.selectAll(25).forEach(this::log);
 
-        System.out.println("");
-        System.out.println("Select All by name");
-        for (Person person : personDao.selectAll("Dewi")) {
-            System.out.println(person);
-        }
+        log("Select All by name");
+        personDao.selectAll("Bram").forEach(this::log);
 
         Person angela = personDao.getPerson(7);
-        angela.setSubject(new Subject("Spanish"));
+        Subject biology = subjectDao.getSubject(40);
+        angela.setSubject(biology);
         personDao.update(angela);
+
+        log("Select All with subject (Join)");
+        personDao.selectAllPlain().forEach(this::log);
+
+        personDao.selectAllWithSubject().forEach(this::log);
+        personDao.selectAllWithSubjectJF().forEach(this::log);
     }
 
     private void log(Object o) { log.info(o + ""); }

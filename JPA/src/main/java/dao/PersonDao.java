@@ -48,6 +48,16 @@ public class PersonDao {
         return query.getResultList();
     }
 
+    public List<Person> selectAllWithSubject() {
+        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN p.subject", Person.class);
+        return query.getResultList();
+    }
+
+    public List<Person> selectAllWithSubjectJF() {
+        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p JOIN FETCH p.subject", Person.class);
+        return query.getResultList();
+    }
+
     // UPDATE
     public Person update(int id, String name) {
         Person p = select(id);
