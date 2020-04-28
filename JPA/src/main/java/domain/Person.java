@@ -1,6 +1,8 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "persons")
@@ -13,8 +15,8 @@ public class Person {
     private int age;
     private int balance = 0;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private Subject subject;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Subject> subjects = new ArrayList<>();
 
    public Person() {}
 
@@ -51,11 +53,7 @@ public class Person {
         this.balance = balance;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public String getSubjectName() {
-        return subject.getName();
+    public void setSubjects(Subject subject) {
+        this.subjects.add(subject);
     }
 }

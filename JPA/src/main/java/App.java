@@ -43,7 +43,7 @@ public class App {
 
         Person angela = personDao.getPerson(7);
         Subject biology = subjectDao.getSubject(40);
-        angela.setSubject(biology);
+        angela.setSubjects(biology);
         personDao.update(angela);
 
         log("Select All with subject (Join)");
