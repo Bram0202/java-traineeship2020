@@ -6,9 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "subjects")
-public class Subject {
-    @Id @GeneratedValue
-    private int id;
+public class Subject extends AbstractEntity {
 
     private String name;
 

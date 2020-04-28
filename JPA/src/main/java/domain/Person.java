@@ -7,15 +7,13 @@ import java.util.List;
 @Entity
 @Table(name = "persons")
 @NamedQuery(name = "selectAll", query = "select p from Person p")
-public class Person {
-    @Id @GeneratedValue
-    private int id;
+public class Person extends AbstractEntity {
 
     private String name;
     private int age;
     private int balance = 0;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Subject> subjects = new ArrayList<>();
 
    public Person() {}
@@ -34,8 +32,6 @@ public class Person {
     public String toString() {
         return "Person{ name= " + name + ", age= " + age + ", balance= " + balance + " }";
     }
-
-    public int getId() { return id; }
 
     public String getName() { return name; }
 
