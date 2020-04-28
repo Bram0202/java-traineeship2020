@@ -16,9 +16,5 @@ public class Subject extends AbstractEntity {
     public Subject() {}
 
     public Subject(String name) { this.name = name; }
-
-    public String getName() {
-        return name;
-    }
 }
 
