@@ -27,7 +27,7 @@ public class App {
         log(personDao.getPerson(id));
 
         // TODO: Remove before production!
-        personDao.delete(id - 1); // NOT PROUCTION SAVE! Just to keep the DB small during testing :)
+        personDao.delete(id - 1); // NOT PROUCTION SAVE! Just to keep3 the DB small during testing :)
         personDao.update(22, 26);
 
         log("Select All");
