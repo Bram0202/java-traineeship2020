@@ -5,9 +5,9 @@ import domain.Subject;
 import org.slf4j.Logger;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 
 import static util.Util.logger;
+import static util.Util.mysql;
 
 public class App {
 
@@ -17,7 +17,7 @@ public class App {
 
     private void start() {
         log("Starting...");
-        EntityManager em = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
+        EntityManager em = mysql();
         PersonDao personDao = new PersonDao(em);
         SubjectDao subjectDao = new SubjectDao(em);
 
@@ -27,7 +27,7 @@ public class App {
         log(personDao.getPerson(id));
 
         // TODO: Remove before production!
-        personDao.delete(id - 1); // NOT PROUCTION SAVE! Just to keep3 the DB small during testing :)
+        personDao.delete(id - 1); // NOT PROUCTION SAVE! Just to keep the DB small during testing :)
         personDao.update(22, 26);
 
         log("Select All");

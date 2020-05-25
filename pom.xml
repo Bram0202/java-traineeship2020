@@ -20,6 +20,7 @@
         <module>JAVA</module>
         <module>JDBC</module>
         <module>JPA</module>
+        <module>ENTERPRISE</module>
     </modules>
 
     <dependencyManagement>
