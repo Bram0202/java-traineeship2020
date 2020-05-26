@@ -1,30 +1,34 @@
 package first.resources;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import java.util.ArrayList;
-import java.util.List;
+import io.swagger.annotations.Api;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/helloworld")
+@Api("Hello World Resource")
 public class HelloWorldResource {
 
-    private List<Student> students;
+    @GET
+    public String getHelloWorld() { return "Hello World"; }
 
     @GET
-    public String getHelloWorld() {
-        return "Hallo World!";
+    @Path("ok")
+    public Response ok(@QueryParam("lastname") String lastname) {
+        return Response.ok().entity(lastname).build();
     }
 
-    @POST
-    @Path("/post")
-    public Student post(Student student) {
-        if (students == null) {
-            students = new ArrayList<>();
-        }
+    @GET
+    @Path("/hello/{id}")
+    @Produces(MediaType.APPLICATION_XML)
+    public Response hello(@PathParam("id") String id) {
+        return Response.ok().entity("<hello>HALLO" + id + "</hello>").build();
+    }
 
-        students.add(student);
-        System.out.println("students.size()=" + students.size());
-        return student;
+    @GET
+    @Path("/error")
+    public Response get() {
+        return Response.serverError().entity("Er ging iets mis!").build();
     }
 }
