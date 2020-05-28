@@ -35,6 +35,15 @@ public class StudentsResource implements Serializable {
     @GET
     public Students getAll() { return studentService.getAll(); }
 
+    // UPDATE
+    @POST
+    public Student post(Student student) {
+        if (studentService.add(student)) {
+            return student;
+        }
+        throw new RuntimeException("Student not added.");
+    }
+
     // DELETE
     @DELETE
     @Path("{id}")

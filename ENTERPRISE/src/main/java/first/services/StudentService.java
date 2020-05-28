@@ -38,11 +38,7 @@ public class StudentService implements Serializable {
         return Students.of(filterStudentsBy(lastname));
     }
 
-    public Student add(Student student) {
-        if (students.add(student)) {
-            return student;
-        } else {
-            throw new RuntimeException("Add failed...");
-        }
+    public boolean add(Student student) {
+        return students.add(student);
     }
 }
