@@ -20,6 +20,12 @@ public class StudentsResource implements Serializable {
     @Inject
     private StudentService studentService;
 
+    // CREATE
+    @POST // create
+    public Student post(Student student) {
+        return studentService.add(student);
+    }
+
     // READ
     @GET
     @Path("{id}")
@@ -36,13 +42,8 @@ public class StudentsResource implements Serializable {
     public Students getAll() { return studentService.getAll(); }
 
     // UPDATE
-    @POST
-    public Student post(Student student) {
-        if (studentService.add(student)) {
-            return student;
-        }
-        throw new RuntimeException("Student not added.");
-    }
+    // Not yet implemented...
+    // TODO: implement Update
 
     // DELETE
     @DELETE
